@@ -69,8 +69,84 @@ SQL
         );
         $stmt->execute();
         $stmt->setFetchMode($pdo::FETCH_CLASS, 'Questionnaire');
-        $questions = $stmt->fetchAll();
-        return $questions;
+        $questionnaires = $stmt->fetchAll();
+        return $questionnaires;
 
     }
+
+    /**
+     * Usine permettant de construire une instance de Questionnaire
+     * Si le paramètre $id est différent de null, rechercher dans la base de données avec createFromId
+     * /!\ Si le paramètre $id vaut null, lancer une exception (c'est une solution transitoire avant de passer à la suite)
+     *
+     * @return Questionnaire
+     */
+    public static function create($id = null)
+    {
+        if ($id == null) {
+            throw new LogicException("le paramètre id vaut null");
+        } else {
+            return self::createFromID($id);
+        }
+    }
+
+    /**
+     * Le questionnaire est-il en cours ?
+     * La valeur de l'attribut $current doit être inférieure à la taille du tableau retourné par getQuestions()
+     *
+     * @see count()
+     *
+     * @return bool
+     */
+    public function isInProgress()
+    {
+        return ($current < getQuestions()) ? true : false;
+    }
+
+    /**
+     * Retourner les éléments du questionnaire par index de proposition
+     * Si l'attribut $questions est null, le tableau des questions lui sera affecté
+     *
+     * @see Question::getFromQuestionnaireId
+     *
+     * @return array<Question> tableau d'instances de Question
+     */
+    public function getQuestions()
+    {
+        if ($this->questions == null) {
+            $this->questions = Question::getFromQuestionnaireId($this->id);
+        }
+        return $this->questions;
+    }
+
+    /**
+     * Donne la question courante
+     *
+     * @return Question
+     */
+    public function getCurrentQuestion()
+    {
+        return $questions[$this->current];
+    }
+
+    /**
+     * Donne l'étape courante du questionnaire (current+1)
+     *
+     * @return int
+     */
+    public function getStep()
+    {
+        return $this->current + 1;
+    }
+
+    /**
+     * Donne le nombre de questions
+     *
+     * @return int
+     */
+    public function getTotal()
+    {
+        return sizeof($this->questions);
+    }
+
 }
