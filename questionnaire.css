@@ -1,0 +1,107 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    max-width: 60em;
+    background-color: #ddd;
+    margin: 0 auto;
+}
+#page {
+    text-align: center;
+}
+div.valid {
+    float: right;
+}
+h1.ui-widget-header {
+    margin-top: 0;
+    font-size: 2.25em;
+    padding: 0.5em 0px;
+}
+.questionnaire {
+    margin: 2em 0;
+}
+.questionnaire .ui-widget-header {
+    font-size: 1.75em;
+    padding: 0.5em 0px;
+    position: relative;
+}
+.questionnaire .ui-widget-header span.header-info {
+    position: absolute;
+    padding: .2em .2em 0;
+    top: .25em;
+}
+.questionnaire .ui-widget-header span.step {
+    left: .25em;
+}
+.questionnaire .ui-widget-header span.score {
+    right: .25em;
+}
+form.main {
+    display: inline-block;
+    margin: 1em;
+}
+form.main input[type='submit'], form.main select {
+    width: 100%;
+}
+div.answers {
+    text-align: left;
+    display: inline-block;
+
+}
+div.answers div.ui-widget {
+    margin: .5em 0;
+    position: relative;
+}
+div.answers div.ui-widget span.step {
+    font-size: 1.8em;
+    position: absolute;
+    top: -.1em;
+    left: -1em;
+    vertical-align: middle;
+    line-height: 2em;
+    border-radius: 1em;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    padding: 0px;
+}
+div.answers div.ui-widget span.step.correct {
+    background: none;
+    background-color: #afa;
+}
+div.answers div.ui-widget span.step.false {
+    background: none;
+    background-color: #faa;
+}
+div.answers div.ui-widget > div {
+    font-size: 1em;
+    padding: .2em .5em .2em 2em;
+}
+
+div.answers div.ui-widget-content span.correct {
+    color: #0d0;
+}
+div.answers div.ui-widget-content span.false {
+    color: #d00;
+    text-decoration: line-through;
+}
+div.answers div.ui-widget-content span.correct img {
+    border: 1px solid #0d0;
+}
+div.answers div.ui-widget-content span.false img {
+    border: 1px solid #d00;
+}
+
+.questionnaire div.ui-progressbar {
+    position: relative;
+}
+.questionnaire div.ui-progressbar div.progress-label {
+    position: absolute;
+    left: 50%;
+    top: .3em;
+    z-index: 1;
+    font-weight: bold;
+    border: none;
+    background: none;
+}
