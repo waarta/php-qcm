@@ -13,14 +13,14 @@ try {
 // Pour plus tard
     // $questionnaire->saveIntoSession() ;
 
-    $page = new WebPage("QCM - {$questionnaire->getText()}");
+    $page = new WebPage("QCM - {$questionnaire->text}");
     $page->appendJsUrl("https://code.jquery.com/jquery-1.12.3.min.js");
     $page->appendJsUrl("https://code.jquery.com/ui/1.11.4/jquery-ui.min.js");
     $page->appendCssUrl("https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css");
     $page->appendCssUrl("questionnaire.css");
 
     $page->appendContent(<<<HTML
-        <h1 class="ui-widget-header">QCM - {$questionnaire->getText()}</h1>
+        <h1 class="ui-widget-header">QCM - {$questionnaire->text}</h1>
 HTML
     );
 
@@ -32,12 +32,12 @@ HTML
         $currentQuestion = $questionnaire->getCurrentQuestion();
         $radios = "";
         foreach ($currentQuestion->getAnswers() as $answer) {
-            $radios .= "\n                <input type='radio' id='answer{$answer->getId()}' name='answer' value='{$answer->getId()}'><label for='answer{$answer->getId()}'>{$answer->getText()}</label>";
+            $radios .= "\n                <input type='radio' id='answer{$answer->id}' name='answer' value='{$answer->id}'><label for='answer{$answer->id}'>{$answer->text}</label>";
         }
 
         $page->appendContent(<<<HTML
             <div class="questionnaire ui-widget">
-                <div class="ui-widget-header"><span class="header-info step ui-state-active ui-corner-all">{$questionnaire->getStep()}</span>&nbsp;{$currentQuestion->getText()}</div>
+                <div class="ui-widget-header"><span class="header-info step ui-state-active ui-corner-all">{$questionnaire->getStep()}</span>&nbsp;{$currentQuestion->text}</div>
                 <div class="ui-widget-content">
                     <form action="{$_SERVER['PHP_SELF']}" method="GET" class="main">
                         <div class="radios">

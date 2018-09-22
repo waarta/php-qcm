@@ -2,7 +2,7 @@
 
 require_once 'entity.class.php';
 // Pour plus tard :
-// require_once 'question.class.php' ;
+require_once 'question.class.php';
 // require_once 'session.class.php' ;
 
 /**
@@ -86,7 +86,7 @@ SQL
         if ($id == null) {
             throw new LogicException("le paramètre id vaut null");
         } else {
-            return self::createFromID($id);
+            return Self::createFromID($id);
         }
     }
 
@@ -100,7 +100,7 @@ SQL
      */
     public function isInProgress()
     {
-        return ($current < getQuestions()) ? true : false;
+        return ($this->current < $this->getQuestions()) ? true : false;
     }
 
     /**
@@ -126,7 +126,7 @@ SQL
      */
     public function getCurrentQuestion()
     {
-        return $questions[$this->current];
+        return $this->questions[$this->current];
     }
 
     /**

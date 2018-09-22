@@ -12,10 +12,10 @@ $page->appendCssUrl("questionnaire.css");
  * La liste déroulante sera nommée 'id'
  * Chaque option affichera le titre du questionnaire et la valeur associée sera l'identifiant du questionnaire
  */
-$select = "<select id=\"quesions\">";
+$select = "<select name=\"id\">";
 
-$questions = Questionnaire::getAll();
-foreach ($questions as $q) {
+$questionaires = Questionnaire::getAll();
+foreach ($questionaires as $q) {
     $select .= "<option value=\"$q->id\">$q->text</option> ";
 }
 $select .= "</select>";

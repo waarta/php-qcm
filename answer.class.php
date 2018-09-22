@@ -35,7 +35,7 @@ class Answer extends Entity
         $pdo = myPDO::getInstance();
         $stmt = $pdo->prepare(<<<SQL
             SELECT id, text
-            FROM question
+            FROM answer
             WHERE questionId = $questionId
             ORDER BY 2
 SQL
